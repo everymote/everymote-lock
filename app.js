@@ -1,7 +1,7 @@
 var io = require('socket.io-client'),
    thingService = require('./thingService');
 
-var port = '80',
+var port =  '80',
     server =  'thing.everymote.com';
 
 
@@ -17,6 +17,7 @@ var connectThing = function(thing, onAction){
 	socket.on('connect', function () {
 		console.log('connected');
 		socket.emit('setup', thing.settings);
+		thing.socket = socket;
 	}).on('doAction', function (action) {
 		
 			thing.onAction(action);			
